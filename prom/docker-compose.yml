@@ -11,6 +11,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     networks:
       - cicd-network
+      - jenkins
 
   grafana:
     image: grafana/grafana:latest
@@ -27,6 +28,8 @@ services:
 networks:
   cicd-network:
     driver: bridge
+  jenkins:
+    external: true
 
 volumes:
   grafana_data:

@@ -5,3 +5,14 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+
+  # - job_name: 'react-app-local'
+  #   metrics_path: /
+  #   static_configs:
+  #     - targets: ['jenkins-docker:3000']
+
+  - job_name: 'react-app-heroku'
+    metrics_path: /
+    scheme: https
+    static_configs:
+      - targets: ['https://cicd-app-f5ef72602877.herokuapp.com/']
