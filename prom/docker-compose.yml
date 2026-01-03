@@ -13,6 +13,14 @@ services:
       - cicd-network
       - jenkins
 
+  blackbox:
+    image: prom/blackbox-exporter:latest
+    container_name: blackbox-cicd
+    ports:
+      - 9115:9115
+    networks:
+      - cicd-network
+
   grafana:
     image: grafana/grafana:latest
     container_name: grafana-cicd

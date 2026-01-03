@@ -6,13 +6,17 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  # - job_name: 'react-app-local'
-  #   metrics_path: /
-  #   static_configs:
-  #     - targets: ['jenkins-docker:3000']
-
-  - job_name: 'react-app-heroku'
-    metrics_path: /
-    scheme: https
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
     static_configs:
-      - targets: ['cicd-app-f5ef72602877.herokuapp.com/']
+      - targets:
+          - https://cicd-app-f5ef72602877.herokuapp.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
