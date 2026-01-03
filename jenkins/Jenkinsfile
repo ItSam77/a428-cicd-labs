@@ -18,9 +18,15 @@ pipeline {
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
+
             }
         }
         stage('Deploy') {
+            input {
+                message: 'Lanjutkan ke stage Deploy?'
+                ok: 'Lanjutkan'
+                cancel: 'Batal'
+            }
             steps {
                 sh './jenkins/scripts/deliver.sh'
                 sleep(time: 60, unit: 'SECONDS')
