@@ -31,11 +31,9 @@ pipeline {
         }
 
         stage("Manual Approval") {
+            agent none
             steps {
-                input {
-                    message 'Lanjutkan ke stage Deploy?'
-                    ok 'Lanjutkan'
-                }
+                input message: 'Lanjutkan ke stage Deploy?', ok: 'Lanjutkan'
             }
         }
         stage('Deploy to Heroku') {
