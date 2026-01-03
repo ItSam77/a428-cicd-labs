@@ -29,13 +29,16 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deploy to Heroku') {
-            agent {
-                label 'built-in'
-            }
+
+        stage("Manual Approval") {
             input {
                 message 'Lanjutkan ke stage Deploy?'
                 ok 'Lanjutkan'
+            }
+        }
+        stage('Deploy to Heroku') {
+            agent {
+                label 'built-in'
             }
             steps {
                 checkout scm
