@@ -15,4 +15,4 @@ scrape_configs:
     metrics_path: /
     scheme: https
     static_configs:
-      - targets: ['cicd-app-f5ef72602877.herokuapp.com:443']
+      - targets: ['cicd-app-f5ef72602877.herokuapp.com/']
