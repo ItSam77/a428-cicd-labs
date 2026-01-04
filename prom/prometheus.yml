@@ -7,7 +7,7 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'blackbox'
-    metrics_path: /prom
+    metrics_path: /probe
     params:
       module: [http_2xx]
     static_configs:
